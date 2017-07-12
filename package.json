@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-webrtc-video-stream",
+  "name": "html5p2",
   "version": "1.0.0",
   "homepage": "https://mysterious-mesa-29296.herokuapp.com/",
   "author": "Renan Pupin <renan.pupin@gmail.com>",
@@ -37,5 +37,7 @@
   "devDependencies": {
     "fs": "0.0.2",
     "requirejs": "^2.2.0"
-  }
+  }, "scripts":{
+"start":"node public\/index.html"}
+
 }

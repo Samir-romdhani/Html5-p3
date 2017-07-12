@@ -1,8 +1,7 @@
 
-
 var activeBox = -1;  // nothing selected
-var aspectRatio = 4/3;  // standard definition video aspect ratio
-var maxCALLERS = 1;
+/*var aspectRatio = 4/3;  // standard definition video aspect ratio*/
+var maxCALLERS = 14;
 var numVideoOBJS = maxCALLERS+1;
 var layout;
 
@@ -13,7 +12,7 @@ function getIdOfBox(boxNum) {
     return "box" + boxNum;
 }
 
-
+/*
 function reshapeFull(parentw, parenth) {
     return {
         left:0,
@@ -37,9 +36,9 @@ function reshapeTextEntryField(parentw, parenth) {
         width:parentw -40
     }
 }
-
+*/
 var margin = 20;
-
+/*
 function reshapeToFullSize(parentw, parenth) {
     var left, top, width, height;
     var margin= 20;
@@ -61,12 +60,13 @@ function reshapeToFullSize(parentw, parenth) {
         height:height
     };
 }
-
+*/
 //
 // a negative percentLeft is interpreted as setting the right edge of the object
 // that distance from the right edge of the parent.
 // Similar for percentTop.
 //
+/*
 function setThumbSizeAspect(percentSize, percentLeft, percentTop, parentw, parenth, aspect) {
 
     var width, height;
@@ -247,10 +247,10 @@ function reshape4of4(parentw, parenth) {
         height: sharedVideoHeight
     }
 }
-
-var boxUsed = [true, false, false, false];
+*/
+var boxUsed = [true, false, false, false,false, false, false,false, false, false,false, false, false,false];
 var connectCount = 0;
-
+/*
 
 function setSharedVideoSize(parentw, parenth) {
     layout = ((parentw /aspectRatio) < parenth)?'p':'l';
@@ -356,7 +356,7 @@ var reshapeThumbs = [
         }
     },
 ];
-
+*/
 
 function killButtonReshaper(parentw, parenth) {
     var imagew = 128;
@@ -392,7 +392,7 @@ function reshapeTextEntryButton(parentw, parenth) {
     }
 }
 
-
+/*
 function handleWindowResize() {
     var fullpage = document.getElementById('fullpage');
     fullpage.style.width = window.innerWidth + "px";
@@ -439,12 +439,12 @@ function setReshaper(elementId, reshapeFn) {
     element.reshapeMe = reshapeFn;
 }
 
-
+*/
 function collapseToThumbHelper() {
     if( activeBox >= 0) {
         var id = getIdOfBox(activeBox);
         document.getElementById(id).style.zIndex = 2;
-        setReshaper(id, reshapeThumbs[activeBox]);
+       // setReshaper(id, reshapeThumbs[activeBox]);
         document.getElementById('muteButton').style.display = "none";
         document.getElementById('killButton').style.display = "none";
         activeBox = -1;
@@ -493,19 +493,19 @@ function expandThumb(whichBox) {
             document.getElementById('killButton').style.display = "block";
         }
     }
-    updateMuteImage(false);
-    handleWindowResize();
+   /* updateMuteImage(false);
+    handleWindowResize();*/
 }
 
 function prepVideoBox(whichBox) {
     var id = getIdOfBox(whichBox);
-    setReshaper(id, reshapeThumbs[whichBox]);
+    //setReshaper(id, reshapeThumbs[whichBox]);
     document.getElementById(id).onclick = function() {
         expandThumb(whichBox);
     };
 }
 
-
+/*
 function killActiveBox() {
     if( activeBox > 0) {
         var easyrtcid = easyrtc.getIthCaller(activeBox-1);
@@ -515,7 +515,7 @@ function killActiveBox() {
         }, 400);
     }
 }
-
+*/
 
 function muteActiveBox() {
     updateMuteImage(true);
@@ -670,26 +670,27 @@ function messageListener(easyrtcid, msgType, content) {
 }
 
 
-function appInit() {
+function appInit2() {
 
     // Prep for the top-down layout manager
-    setReshaper('fullpage', reshapeFull);
+   // setReshaper('fullpage', reshapeFull);
     for(var i = 0; i < numVideoOBJS; i++) {
         prepVideoBox(i);
     }
-    setReshaper('killButton', killButtonReshaper);
+   /* setReshaper('killButton', killButtonReshaper);
     setReshaper('muteButton', muteButtonReshaper);
     setReshaper('textentryBox', reshapeTextEntryBox);
     setReshaper('textentryField', reshapeTextEntryField);
-    setReshaper('textEntryButton', reshapeTextEntryButton);
+    setReshaper('textEntryButton', reshapeTextEntryButton);*/
 
-    updateMuteImage(false);
-    window.onresize = handleWindowResize;
-    handleWindowResize(); //initial call of the top-down layout manager
+   // updateMuteImafe(false);
+   // window.onresize = handleWindowResize;
+   // handleWindowResize(); //initial call of the top-down layout manager
 
 
     easyrtc.setRoomOccupantListener(callEverybodyElse);
-    easyrtc.easyApp("easyrtc.multiparty", "box0", ["box1", "box2", "box3"], loginSuccess);
+    easyrtc.easyApp("easyrtc.multiparty", "box0", ["box1", "box2", "box3","box4", "box5", "box6","box7", "box8", "box9","box10", "box11", "box12","box13","box14"], loginSuccess);
+    console.log("callEverybodyElse :"+ easyrtc.easyApp());
     easyrtc.setPeerListener(messageListener);
     easyrtc.setDisconnectListener( function() {
         easyrtc.showError("LOST-CONNECTION", "Lost connection to signaling server");
@@ -702,7 +703,7 @@ function appInit() {
             document.getElementById('textEntryButton').style.display = 'block';
         }
         document.getElementById(getIdOfBox(slot+1)).style.visibility = "visible";
-        handleWindowResize();
+      //  handleWindowResize();
     });
 
 
@@ -723,5 +724,3 @@ function appInit() {
         },20);
     });
 }
-
-

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Multiparty Chatroom</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+         <link rel="stylesheet" type="text/css" href="/easyrtc/easyrtc.css" />
+
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="/easyrtc/easyrtc.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/demo_room2.css" />
+        <script type="text/javascript" src="js/demo_multiparty2.js"></script>
+    </head>
+
+    <body onload="appInit2()">
+        <div id="fullpage"  class="boxCommon" style="background-image:url(images/irongrip.png)">
+            <table  border="1" width="80%">
+                <tr>
+                    <video width="20%" id="box7" class="transit boxCommon thumbCommon" ></video>
+                    <video width="20%" id="box1" class="transit boxCommon thumbCommon" ></video>
+                    <video width="20%" id="box2" class="transit boxCommon thumbCommon" ></video>
+                    <video width="20%" id="box3" class="transit boxCommon thumbCommon" ></video>
+                    <video width="20%" id="box4" class="transit boxCommon thumbCommon" ></video>
+                </tr>
+                <tr>
+
+                    <video width="20%" id="box5" class="transit boxCommon thumbCommon" ></video>
+                    <video width="20%" id="box6" class="transit boxCommon thumbCommon" ></video>
+                    
+                    <video width="20%" id="box0" class="transit boxCommon thumbCommon easyrtcMirror" muted="muted" volume="0" ></video>
+                    <video width="20%" id="box8" class="transit boxCommon thumbCommon" ></video>
+                    <video width="20%" id="box9" class="transit boxCommon thumbCommon" ></video>
+                </tr>
+                <tr>
+                    <video width="20%" id="box10" class="transit boxCommon thumbCommon" ></video>
+                    <video width="20%" id="box11" class="transit boxCommon thumbCommon" ></video>
+                    <video width="20%" id="box12" class="transit boxCommon thumbCommon" ></video>
+                    <video width="20%" id="box13" class="transit boxCommon thumbCommon" ></video>
+                    <video width="20%" id="box14" class="transit boxCommon thumbCommon" ></video>
+                </tr>
+
+
+
+            </table>
+            <div id="textentryBox" onsubmit="sendText()" style="display:none" >
+                <input type="text" id="textentryField"  class="transit boxcommon" /><br>
+                <button id="textentrySubmit" style="float:right;margin-right:1em" onclick="sendText()">Send</button>
+                <button id="textentryCancel" style="float:left;margin-left:1em" onclick="cancelText()">Cancel</button>
+            </div>
+
+            <img id="killButton" class="transit boxCommon" onclick="killActiveBox()" src="images/button_close.png" style="display:none;z-index:3" alt="close button" />
+            <img id="muteButton" class="transit boxCommon" onclick ="muteActiveBox()" src="images/button_mute.png" style="display:none;z-index:3" alt="mute button" />
+            <img id="textEntryButton" class="transit boxCommon" onclick ="showTextEntry()" src="images/textEntry.png" style="z-index:3;display:none" alt="text button" />
+        </div>
+    </body>
+</html>
